@@ -44,23 +44,23 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = false,
         ValidateAudience = false
     };
-})
-// Add cookie + OpenID Connect for Azure AD SSO
-.AddCookie("AdminCookie") // Cookie scheme for admin users after SSO login
-.AddOpenIdConnect("AzureAD", options =>
-{
-    options.ClientId = builder.Configuration["AzureAd:ClientId"];
-    options.ClientSecret = builder.Configuration["AzureAd:ClientSecret"];
-    options.Authority = $"{builder.Configuration["AzureAd:Instance"]}{builder.Configuration["AzureAd:TenantId"]}/v2.0";
-    options.ResponseType = "code";
-    options.SaveTokens = true;
-    options.SignInScheme = "AdminCookie";  // Uses cookie after successful login
-    options.CallbackPath = "/signin-oidc";
-    options.Scope.Add("openid");
-    options.Scope.Add("profile");
-    options.Scope.Add("email"); 
-    options.SignedOutRedirectUri = "/";
 });
+// Add cookie + OpenID Connect for Azure AD SSO
+// .AddCookie("AdminCookie") // Cookie scheme for admin users after SSO login
+// .AddOpenIdConnect("AzureAD", options =>
+// {
+//     options.ClientId = builder.Configuration["AzureAd:ClientId"];
+//     options.ClientSecret = builder.Configuration["AzureAd:ClientSecret"];
+//     options.Authority = $"{builder.Configuration["AzureAd:Instance"]}{builder.Configuration["AzureAd:TenantId"]}/v2.0";
+//     options.ResponseType = "code";
+//     options.SaveTokens = true;
+//     options.SignInScheme = "AdminCookie";  // Uses cookie after successful login
+//     options.CallbackPath = "/signin-oidc";
+//     options.Scope.Add("openid");
+//     options.Scope.Add("profile");
+//     options.Scope.Add("email"); 
+//     options.SignedOutRedirectUri = "/";
+// });
 
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();

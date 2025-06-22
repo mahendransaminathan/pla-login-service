@@ -12,7 +12,7 @@ public class LoginController : ControllerBase
         _userService = userService;
     }
 
-    [HttpPost("login")]
+    [HttpGet("login")]
     public IActionResult Login([FromBody] Login request)
     {
         var user = _userService.Authenticate(request);
