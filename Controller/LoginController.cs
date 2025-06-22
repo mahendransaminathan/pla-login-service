@@ -20,7 +20,7 @@ public class LoginController : ControllerBase
             return Unauthorized("Invalid username or password.");
 
         var token = _userService.GenerateJwtToken(user);
-        return Ok(new LoginResponse(token, user.Username, DateTime.UtcNow, "Customer"));
+        return Ok(new LoginResponse(token, user.Username, DateTime.UtcNow, "Customer", true));
     }
 
     [HttpPost("register")]

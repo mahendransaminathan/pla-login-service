@@ -44,7 +44,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = false,
         ValidateAudience = false
     };
-});/*
+})
 // Add cookie + OpenID Connect for Azure AD SSO
 .AddCookie("AdminCookie") // Cookie scheme for admin users after SSO login
 .AddOpenIdConnect("AzureAD", options =>
@@ -61,7 +61,7 @@ builder.Services.AddAuthentication(options =>
     options.Scope.Add("email"); 
     options.SignedOutRedirectUri = "/";
 });
-*/
+
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 
